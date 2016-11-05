@@ -1,0 +1,215 @@
+﻿@using SaifRepository;
+@{
+    var menuRepository = new MenuRepository();
+    var menus = menuRepository.GetMenus();
+    var addressRepository = new AddressRepository();
+    var addresses = addressRepository.GetAddress();
+    var telephoneNumber = addressRepository.GetTelephoneNumber();
+}
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320">
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/ico" href="~/images/favicon.ico" />
+    <link rel="icon" type="image/ico" href="~/images/favicon.ico" />
+    <!-- main css -->
+    <link rel="stylesheet" href="~/css/style.css" media="screen" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" media="screen" />
+    <link rel="stylesheet" href="~/css/responsive.css" media="screen" />
+    <link rel="stylesheet" href="~/css/fonts.css" media="screen" />
+    <link rel="stylesheet" href="~/css/font-awesome.css" media="screen" />
+    <link rel="stylesheet" href="~/css/animate.css" media="screen" />
+    <link rel="stylesheet" href="~/js/plugins/crousel/css/owl.carousel.css" media="screen" />
+    <link rel="stylesheet" href="~/js/plugins/datetimepicker/jquery.datetimepicker.css" media="screen" />
+    <link rel="stylesheet" href="~/js/plugins/fancybox/jquery.fancybox.css" media="screen" />
+    <link rel="stylesheet" href="~/js/plugins/fancybox/helpers/jquery.fancybox-buttons.css" media="screen" />
+
+    <!-- REVOLUTION STYLE SHEETS -->
+    <link rel="stylesheet" type="text/css" href="~/js/plugins/revolution/css/settings.css" />
+    <!-- REVOLUTION LAYERS STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/js/plugins/revolution/css/layers.css" />
+    <!-- REVOLUTION NAVIGATION STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/js/plugins/revolution/css/navigation.css" />
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <!--page loader start-->
+    <div id="preloader">
+        <div id="status">
+            <div class="css3-spinner"><div class="css3-spinner-cube1"></div><div class="css3-spinner-cube2"></div></div>
+        </div>
+    </div>
+    <!--page loader start-->
+    <!-- Header Start -->
+
+    <div class="fixit_header fixit_custom_anim">
+        <div class="fixit_menu_toggle fixit_custom_anim">
+            <span class="top"></span>
+            <span class="center"></span>
+            <span class="bottom"></span>
+        </div>
+        <div style="text-align:center;margin-bottom: -100px;">
+            <img class="logo_hide" style="height:100px" src="~/images/ISO9001-2008.jpg" />
+        </div>
+        <div class="fixit_header_left">
+            <div class="fixit_logo">
+                <a href="@Url.Action("index","home")"><img class="logo_header" style="height:130px" src="~/images/Logo.png" alt="fixit logo" /></a>
+            </div>
+        </div>
+        <div class="fixit_header_center fixit_custom_anim" style="margin-top:95px">
+            <div class="fixit_menu fixit_custom_anim">
+                <ul>
+                    @foreach (var item in menus)
+                    {
+                        if (HttpContext.Current.Request.Url.AbsoluteUri.Contains(item.MenuAction))
+                        {
+                            <li class="active"><a href="@Url.Action(item.MenuAction.Trim(), "home")">@item.MenuName.Trim()</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action(item.MenuAction.Trim(), "home")">@item.MenuName.Trim()</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="fixit_header_right">
+            @*<img style="height:130px" src="~/images/ISO9001-2008.jpg" />*@
+            <img class="logo_hide" style="height:130px" src="~/images/client8.jpg" />
+            @*<a href="@Url.Action("contact","home")" class="fixit_btn">Get  a quote</a>*@
+        </div>
+    </div>
+    <!-- Header End -->
+
+    @RenderBody()
+
+    <!-- footer start -->
+    <div class="fixit_footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <aside class="widget contact_detail">
+                                <h3 class="widget-title"><span>Address</span></h3>
+                                @foreach (var item in addresses)
+                                {
+                                    <p class="address">
+                                        @item.Address1.Trim();
+                                    </p>
+                                }
+
+                                <div class="number">
+                                    @foreach (var item in telephoneNumber)
+                                    {
+                                        <p>@item.PhoneType.Trim(): @item.Number.Trim()</p>
+                                    }
+                                </div>
+
+                            </aside>
+                        </div>
+                        <div class="col-md-7">
+                            <aside class="widget working_hour" style="width:90%">
+                                <h3 class="widget-title"><span>Working hours</span></h3>
+                                <ul>
+                                    <li>
+                                        <span class="day">Sunday - Thursday </span>
+                                        <span class="time">08:00 - 18:00</span>
+                                    </li>
+                                    <li>
+                                        <span class="day">Friday</span>
+                                        <span class="time">Closed</span>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <aside class="widget subscribe">
+                        <h3 class="widget-title"><span>SUPPORT</span></h3>
+                        <a style="color:aqua" class="mailto" href="mailto:info@saif-qatar.com">info@saif-qatar.com</a><br><br />
+                        <a style="color:aqua" href="@Url.Action("login","admin")" target="_blank">Site Adminstrator</a><br><br />
+                        <p style="color:white">FOLLOW US</p>
+                        <div class="fixit_social">
+                            <ul>
+                                <li><a href="https://www.facebook.com/Saifqatarduct" target="_blank"><i style="margin-top: 5px;" class="fa fa-facebook"></i></a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="col-md-12">
+                    <div style="text-align:center">
+                        Developed by <a href="http://www.pointsqatar.com" target="_blank" style="color:#0f98e7;font-weight:700">Points</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- footer end -->
+
+
+    <script type="text/javascript" src="~/js/jquery-1.11.3.js"></script>
+
+    <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src="~/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+        (Load Extensions only on Local File Systems !
+         The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+
+    <script type="text/javascript" src="~/js/bootstrap.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/animation/TimelineMax.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/animation/jquery.scrollorama.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/datetimepicker/jquery.datetimepicker.min.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/crousel/js/owl.carousel.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/select/bootstrap-select.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/animation/TimelineMax.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/animation/jquery.scrollorama.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/fancybox/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="~/js/plugins/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="~/js/plugins/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+
+    <script type="text/javascript" src="~/js/plugins/count/jquery.appear.js"></script>
+    <script type="text/javascript" src="~/js/plugins/count/jquery.countTo.js"></script>
+
+    <script type="text/javascript" src="~/js/custom.js"></script>
+
+
+    @RenderSection("mapsection", false)
+
+    @RenderSection("fancybox", false)
+
+    <!--main js file end-->
+
+</body>
+</html>

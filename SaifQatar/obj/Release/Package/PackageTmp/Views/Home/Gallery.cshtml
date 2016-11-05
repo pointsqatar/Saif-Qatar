@@ -1,0 +1,77 @@
+﻿@using SaifRepository;
+@{
+    ViewBag.Title = "SAIF - Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var gallaryRepositiry = new GallaryReprository();
+    var images = gallaryRepositiry.GetGalleryImages();
+}
+
+<!-- main body start -->
+<div id="fixit_main_content">
+
+    <!-- page title start -->
+    <div class="fixit_page_title">
+        <div class="fixit_page_title_inner">
+            <h3>Gallery</h3>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Gallery</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- page title end -->
+    <!-- project grid start -->
+    <div class="fixit_section">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in images)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="fixit_project_wrapper">
+                            <img src="@item.ImageUrl.Trim()" alt="" />
+                            <div class="project_overlay fixit_custom_anim">
+                                <a class="fancybox-buttons" data-fancybox-group="button" href="@item.ImageUrlThumb.Trim()">
+                                    <div class="project_overlay_detail">
+                                        <h3>@item.ImageDescription.Trim()</h3>
+                                        <div style="color:white">View</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- project grid end -->
+</div>
+<!-- main body end -->
+
+@section fancybox
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('.fancybox').fancybox();
+            $('.fancybox-buttons').fancybox({
+                openEffect: 'none',
+                closeEffect: 'none',
+
+                prevEffect: 'none',
+                nextEffect: 'none',
+
+                closeBtn: false,
+
+                helpers: {
+                    title: {
+                        type: 'inside'
+                    },
+                    buttons: {}
+                },
+
+                afterLoad: function () {
+                    this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+                }
+            });
+        });
+    </script>
+}

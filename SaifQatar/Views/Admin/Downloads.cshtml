@@ -1,0 +1,167 @@
+﻿@using DataAccessLayer;
+@{
+    ViewBag.Title = "Downloads";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    SaifDatabaseEntities dbContext = new SaifDatabaseEntities();
+    var drop = dbContext.Certificates.Select(x => x).ToList();
+
+    var portfolio = dbContext.ProductCatalogues.Select(x => x).ToList();
+}
+
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Add").click(function () {
+            var name = $("#name_txt").val().trim();
+            var document = $("#certificate_file")[0].files[0];
+            if (name == '' || document == null) {
+                alert('Name and Certificate are must!!');
+                return;
+            }
+
+            var formdata = new FormData();
+            formdata.append('name', name);
+            formdata.append('document', document);
+
+            $.ajax({
+                type: 'POST',
+                url: 'AddCertificates',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("downloads", "admin")';
+                }
+            });
+        });
+
+        $("#delete_btn").click(function () {
+            var id = $("#certifi_id").val().trim();
+            if (id == '0') {
+                alert('Please select ID');
+                return;
+            }
+            $.ajax({
+                type: 'GET',
+                url: 'DeleteCertificate/' + id,
+                success: function (result) {
+                    alert("Certificate is deleted!!!");
+                    window.location.href = '@Url.Action("downloads", "admin")';
+                }
+            });
+        });
+
+        $("#Add_Product").click(function () {
+            var name = $("#Pname_txt").val();
+            var file = $("#Portfolio")[0].files[0];
+            if (name == '' || file == null) {
+                alert('Name and Product catalogue are must!!');
+                return;
+            }
+            FormData = formdata = new FormData();
+            formdata.append('name', name);
+            formdata.append('file', file);
+            $.ajax({
+                type: 'POST',
+                url: 'AddProductPortfolio',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("downloads", "admin")';
+                }
+            });
+        });
+
+        $("#pdelete_btn").click(function () {
+            var id = $("#product_id").val().trim();
+            if (id == '0') {
+                alert('Please select ID');
+                return;
+            }
+            $.ajax({
+                type: 'GET',
+                url: 'DeletePortfolio/' + id,
+                success: function (result) {
+                    alert("ProductCatalogue is deleted!!!");
+                    window.location.href = '@Url.Action("downloads", "admin")';
+                }
+            });
+        });
+
+        $("#updatebrochure").click(function () {
+            var brochure = $("#brochure")[0].files[0];
+            if (brochure == null) {
+                alert('Please select Brochure.');
+                return;
+            }
+            var formdata = new FormData();
+            formdata.append('brochure', brochure);
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateBrochure',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("downloads", "admin")';
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
+        });
+
+    });
+</script>
+
+
+<h2>Certificates</h2>
+<h5>Add Certificates</h5>
+<div>
+    <div><h4>Name:</h4><input type="text" id="name_txt" /></div>
+    <div><input type="file" id="certificate_file" /></div>
+    <div><input type="submit" id="Add" value="Add" /></div>
+</div>
+<h5>Delete Certificate</h5>
+<div>
+    <select id="certifi_id">
+        <option value="0">--select--</option>
+        @foreach (var item in drop)
+        {
+            <option value="@item.Id">@item.CertificateName</option>
+        }
+    </select>
+</div>
+<div>
+    <input type="button" id="delete_btn" value="Delete" />
+</div>
+
+<h2>Product Portfolios</h2>
+<h5>Add Product Portfolio</h5>
+<div>
+    <div><h4>Product Name:</h4><input type="text" id="Pname_txt" /></div>
+    <div><input type="file" id="Portfolio" /></div>
+    <div><input type="submit" id="Add_Product" value="Add" /></div>
+</div>
+<h5>Delete Product Portfolio</h5>
+<div>
+    <select id="product_id">
+        <option value="0">--select--</option>
+        @foreach (var item in portfolio)
+        {
+        <option value="@item.Id">@item.ProductName</option>
+        }
+    </select>
+</div>
+<div>
+    <input type="button" id="pdelete_btn" value="Delete" />
+</div>
+
+<h2>Company Broucher</h2>
+<h5>Update Brochure</h5>
+<div>
+    <div><input type="file" id="brochure" /></div>
+    <div><input type="submit" id="updatebrochure" value="Update" /></div>
+</div>
+

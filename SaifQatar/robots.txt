@@ -1,0 +1,9 @@
+User-agent: *
+
+Disallow: /*Controllers
+Disallow: /*Views
+Disallow: /*Models
+Disallow: /*Admin
+Disallow: /*admin
+
+Sitemap: http://www.saif-qatar.com/sitemap.xml

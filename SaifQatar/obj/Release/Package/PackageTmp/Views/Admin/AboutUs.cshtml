@@ -1,0 +1,158 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var result = dbContext.AboutUs.Select(x => x).ToList();
+    var id = dbContext.Testimonials.Select(x => x).ToList();
+    ViewBag.Title = "Admin Panel - About Us";
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btn_Submit").click(function () {
+            var title = encodeURIComponent($("#title").val().trim());
+            var para1 = $("#para1").val().trim();
+            var para2 = $("#para2").val().trim();
+            var para3 = $("#para3").val().trim();
+            var point1 = $("#point1").val().trim();
+            var point2 = $("#point2").val().trim();
+            var point3 = $("#point3").val().trim();
+            var point4 = $("#point4").val().trim();
+            var point5 = $("#point5").val().trim();
+            var point6 = $("#point6").val().trim();
+            var point7 = $("#point7").val().trim();
+
+            if (title == null || title == '' || para1 == null || para1 == '' || para2 == null || para2 == '' || point1 == null || point1 == '' || point2 == null || point2 == '' || point3 == null || point3 == '' || point4 == null || point4 == '') {
+                alert("All Text Fields are Required!!");
+                return;
+            }
+            var image = $("#imageUpload")[0].files[0];
+            var formdata = new FormData();
+            formdata.append("Title", title);
+            formdata.append("Para1", para1);
+            formdata.append("Para2", para2);
+            formdata.append("Para3", para2);
+            formdata.append("Point1", point1);
+            formdata.append("Point2", point2);
+            formdata.append("Point3", point3);
+            formdata.append("Point4", point4);
+            formdata.append("Point5", point5);
+            formdata.append("Point6", point6);
+            formdata.append("Point7", point7);
+            formdata.append("Image", image);
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateAboutUs',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("aboutus", "admin")';
+                }
+            });
+        });
+        $("#testid").change(function () {
+            var id = $("#testid").val().trim();
+
+            if (id != '0') {
+                $.ajax({
+                    type: 'GET',
+                    url: 'GetTestimonial/' + id,
+                    success: function (result) {
+                        $("#testimonial_Content").val(result);
+                    }
+                });
+            }
+        });
+        $("#testi_btn").click(function () {
+            var content = $("#testimonial_Content").val().trim();
+            if (content == null || content == '') {
+                alert("Testimonial must have value!!");
+                return;
+            }
+            var id = $("#testid").val();
+            var data = { "content": content };
+            if (content != null) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'UpdateTestimonial/' + id,
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        window.location.href = '@Url.Action("aboutus", "admin")';
+                    }
+                });
+            }
+        });
+        $("#Delete_btn").click(function () {
+            var id = $("#testid").val();
+            var isDelete = confirm("Are you sure want to Delete?");
+            if (isDelete) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'DeleteTestimonial/' + id,
+                    success: function (result) {
+                        window.location.href = '@Url.Action("aboutus", "admin")';
+                    }
+                });
+
+            }
+        });
+        $("#btn_addtesti").click(function () {
+            var text = $("#Add_Content").val().trim();
+            if (text == null || text == '') {
+                alert("Testimonial must have value!!");
+                return;
+            }
+            var data = { "content": text };
+            $.ajax({
+                type: 'POST',
+                url: 'AddTestimonial',
+                data: JSON.stringify(data),
+                success: function (result) {
+                    window.location.href = '@Url.Action("aboutus", "admin")';
+                }
+            });
+        });
+    });
+</script>
+
+
+<div>
+    <h2>About Us</h2>
+    <div><h4>Title:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="title">@result[0].Description</textarea></div>
+    <div><h4>Paragraph 1:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="para1">@result[1].Description</textarea></div>
+    <div><h4>Paragraph 2:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="para2">@result[2].Description</textarea></div>
+    <div><h4>Paragraph 3:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="para3">@result[10].Description</textarea></div>
+    <div><h4>Point 1:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point1">@result[3].Description</textarea></div>
+    <div><h4>Point 2:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point2">@result[4].Description</textarea></div>
+    <div><h4>Point 3:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point3">@result[5].Description</textarea></div>
+    <div><h4>Point 4:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point4">@result[6].Description</textarea></div>
+    <div><h4>Point 5:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point5">@result[7].Description</textarea></div>
+    <div><h4>Point 6:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point6">@result[8].Description</textarea></div>
+    <div><h4>Point 7:<span style="color:red">*</span></h4><textarea cols="50" rows="3" id="point7">@result[9].Description</textarea></div>
+    <div>
+        <h4>Image Source:</h4><img id="image" src="@result[11].Description" style="height:200px; width:200px" />
+        <input type="file" id="imageUpload" />
+    </div>
+    <div>
+        <input type="button" id="btn_Submit" value="Update" />
+    </div>
+
+</div>
+
+<div>
+    <h1>Update Testimonial</h1>
+    <select name="Testimonial" id="testid">
+        <option value="0">--Select--</option>
+        @{int i = 1; }
+        @foreach (var item in id)
+        {
+            <option value="@item.Id">Testimonial @i</option>
+            i++;
+        }
+    </select>
+    <div><textarea rows="5" cols="75" id="testimonial_Content"></textarea></div>
+    <div><input type="button" id="testi_btn" value="Update"><input type="button" id="Delete_btn" value="Delete" /></div><br />
+</div>
+<div><h1>Add new Testimonial: </h1><textarea cols="25" rows="5" id="Add_Content"></textarea></div>
+<div><input type="button" value="Add Testimonial" id="btn_addtesti" /></div>

@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "SAIF - About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var DbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var result = DbContext.AboutUs.Select(x => x).ToList();
+    var test = DbContext.Testimonials.Select(x => x).ToList();
+}
+
+<!-- main body start -->
+<div id="fixit_main_content">
+
+    <!-- page title start -->
+    <div class="fixit_page_title">
+        <div class="fixit_page_title_inner">
+            <h3>About Us</h3>
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("index","home")">Home</a></li>
+                <li><a href="@Url.Action("aboutus","home")">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- page title end -->
+    <!-- Little about us start -->
+    <div class="fixit_section no_padding_bottom bottom_shape overflow_hidden" style="background-color:#f7f7f7;padding-bottom: 60px;">
+        <div class="container-fluid">
+            <div class="fixit_little_aboutus">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="fixit_little_aboutus_img">
+                            <img class="img-responsive" src="@result[11].Description" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <div class="fixit_little_aboutus_detail">
+                            <h3>@Html.Raw(result[0].Description)</h3>
+                            <p>@result[1].Description</p>
+                            <p>@result[2].Description</p>
+                            <p>@Html.Raw(result[10].Description)</p>
+                            <ul>
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[3].Description</div>
+                                </li>
+
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[4].Description</div>
+                                </li>
+
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[5].Description</div>
+                                </li>
+
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[6].Description</div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[7].Description</div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[8].Description</div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                    </div>
+                                    <div class="text">@result[9].Description</div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Little about us end -->
+    <!-- Testimonials start -->
+    <div class="fixit_section dark_overlay fixit_testimonials_section">
+        <div class="fixit_section_heading light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h3 class="title">Testimonials</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixit_testimonials_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="fixit_testimonials_slider owl-theme">
+                            @foreach (var item in test)
+                            {
+                                <div class="item">
+                                    <p class="text">@item.Testimonial_Description</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonials end -->
+
+</div>
+<!-- main body end -->

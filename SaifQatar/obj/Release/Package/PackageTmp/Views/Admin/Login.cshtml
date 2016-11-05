@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Admin Panel";
+    string errormsg = ViewBag.ErrorMessage;
+}
+
+
+<form method="post" action="@Url.Action("login","admin")" style="margin:50px">
+    <div>
+        <span>
+            <img src="~/assets/img/login.png" alt="Admin Access" height="100" width="100" />
+        </span>
+        <div>
+            <span>UserName :</span> <input name="UserName" type="text" placeholder="Enter UserName" />
+        </div>
+        <div>
+            <span>Password :</span> <input name="Password" type="password" placeholder="Enter password" />
+        </div>
+    </div>
+    <div><input type="submit" id="btnsubmit" value="Login" /></div>
+    @if (!string.IsNullOrEmpty(errormsg))
+    {
+        <span style="color:red">@errormsg</span>
+    }
+    <div><a href="@Url.Action("resetpassword","admin")">Reset Password</a></div>
+</form>
+

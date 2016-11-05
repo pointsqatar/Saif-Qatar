@@ -1,0 +1,55 @@
+﻿@using SaifRepository;
+@{
+    ViewBag.Title = "SAIF - Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var productsRepository = new ProductRepository();
+    var products = productsRepository.GetProducts();
+}
+
+<!-- main body start -->
+<div id="fixit_main_content">
+    <!-- page title start -->
+    <div class="fixit_page_title">
+        <div class="fixit_page_title_inner">
+            <h3>Our Products</h3>
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("index","home")">Home</a></li>
+                <li><a href="@Url.Action("products","home")">Our Produts</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- page title end -->
+    <!-- project grid start -->
+    <div class="fixit_section" style="background-color:#f7f7f7;">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in products)
+                {
+                    <div class="col-md-12">
+                        <div class="fixit_project_wrapper fixit_project_list">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="image_wrapper"><img src="@item.ProductImageUrl.Trim()" alt="" /></div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="project_overlay fixit_custom_anim">
+                                        <div class="project_overlay_detail">
+                                            <h3>@item.ProductName.Trim()</h3>
+                                            <div class="project_meta">
+                                                <div>
+                                                    <span class="fa fa-arrow-circle-o-right"></span>@item.ProcuctDescription.Trim()
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- project grid end -->
+</div>
+<!-- main body end -->

@@ -1,0 +1,85 @@
+﻿@using SaifRepository;
+@{
+    ViewBag.Title = "SAIF - Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var eventsRepositiry = new EventsRepository();
+    var events = eventsRepositiry.GetEvents();
+}
+
+<!-- main body start -->
+<div id="fixit_main_content">
+
+    <!-- page title start -->
+    <div class="fixit_page_title">
+        <div class="fixit_page_title_inner">
+            <h3>Events</h3>
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("Index", "home")"> Home</a></li>
+                <li><a href="@Url.Action("Events", "home")">Events</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- page title end -->
+
+    <div class="fixit_section" style="background-color:#f7f7f7;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="row blog_clearfix">
+
+                        @foreach (var item in events)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="fixit_blog_wrapper">
+                                    <a class="fancybox-buttons" data-fancybox-group="button" href="@item.EventImageURLThumb.Trim()">
+                                        <div class="fixit_blog_image">
+                                            <img src="@item.EventImageURL.Trim()" alt="" />
+                                        </div>
+                                    </a>
+                                    <div class="fixit_blog_detail">
+                                        <div class="fixit_meta">
+                                            <span class="date">@item.EventDate.ToShortDateString().Trim()</span>
+                                            <span class="user">@item.EventName.Trim()</span>
+                                        </div>
+                                        <h3><a>@item.EventTitle.Trim()</a></h3>
+                                        <p>@item.EventDescription.Trim()</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- main body end -->
+
+@section fancybox
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.fancybox-buttons').fancybox({
+                openEffect: 'none',
+                closeEffect: 'none',
+
+                prevEffect: 'none',
+                nextEffect: 'none',
+
+                closeBtn: false,
+
+                helpers: {
+                    title: {
+                        type: 'inside'
+                    },
+                    buttons: {}
+                },
+
+                afterLoad: function () {
+                    this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+                }
+            });
+        });
+    </script>
+}

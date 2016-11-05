@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var product = dbContext.Products.Select(x => x).ToList();
+    ViewBag.Title = "Admin Panel - Products";
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#product_id").change(function () {
+            var id = $("#product_id").val();
+            $.ajax({
+                type: 'GET',
+                url: 'GetProductDetail/' + id,
+                success: function (result) {
+                    $("#txt_title").val(result.ProductName);
+                    $("#txt_description").val(result.ProcuctDescription);
+                    $("#img_product").attr("src", result.ProductImageUrl);
+                    $("#txt_sort").val(result.SortOrder);
+                }
+            });
+        });
+        $("#btn_delete").click(function () {
+            var id = $("#product_id").val();
+            $.ajax({
+                type: 'GET',
+                url: 'DeleteProduct/' + id,
+                success: function (result) {
+                    window.location.href = '@Url.Action("products", "admin")';
+                }
+            });
+        });
+        $("#btn_add").click(function () {
+            var title = $("#txt_title_add").val();
+            var description = $("#txt_description_add").val();
+            var image = $("#img_file_add")[0].files[0];
+            var order = $("#txt_sort_add").val();
+            var formdata = new FormData();
+            formdata.append("title", title);
+            formdata.append("description", description);
+            formdata.append("image", image);
+            formdata.append("order", order);
+            $.ajax({
+                type: 'POST',
+                url: 'AddProduct',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("products", "admin")';
+                }
+            });
+        });
+        $("#btn_update").click(function () {
+            var id = $("#product_id").val();
+            var title = $("#txt_title").val();
+            var description = $("#txt_description").val();
+            var image = $("#img_file")[0].files[0];
+            var order = $("#txt_sort").val();
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("title", title);
+            formdata.append("description", description);
+            formdata.append("image", image);
+            formdata.append("order", order);
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateProduct',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("products", "admin")';
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<div>
+    <h2>Products</h2>
+    <h3>Select product:</h3>
+    <select id="product_id">
+        <option value="0">--Select--</option>
+        @foreach (var item in product)
+        {
+            <option value="@item.Id">@item.ProductName</option>
+        }
+
+    </select>
+    <div><h5>Product Title:</h5><input type="text" id="txt_title" /></div>
+    <div><h5>Product Description:</h5><textarea cols="50" rows="5" id="txt_description"></textarea></div>
+    <div><h5>Sort Postion:</h5><input type="text" id="txt_sort" /></div>
+    <div>
+        <h5>Image Source:</h5><img src="" id="img_product" style="height:100px; width:200px" />
+        <input type="file" id="img_file" />
+    </div><br />
+    <div>
+        <input type="button" id="btn_delete" value="Delete Product" />
+        <input type="button" id="btn_update" value="Update Product" />
+    </div>
+</div>
+<div>
+    <h1>Add Product:</h1>
+    <div><h5>Product Title:</h5><input type="text" id="txt_title_add" /></div>
+    <div><h5>Product Description:</h5><textarea cols="50" rows="5" id="txt_description_add"></textarea></div>
+    <div><h5>Sort Postion:</h5><input type="text" id="txt_sort_add" /></div>
+    <div>
+        <h5>Image Source:</h5><img src="" />
+        <input type="file" id="img_file_add" />
+        <div>
+            <br />
+            <input type="button" id="btn_add" value="Add New Product" />
+        </div>
+    </div>
+</div>
+

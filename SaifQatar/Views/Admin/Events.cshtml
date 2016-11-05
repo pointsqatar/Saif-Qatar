@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var result = dbContext.Events.Select(x => x).ToList();
+    ViewBag.Title = "Admin Panel - Events";
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#select_event").change(function () {
+            var id = $("#select_event").val();
+            $.ajax({
+                type: 'GET',
+                url: 'GetEvent/' + id,
+                success: function (result) {
+                    $("#txt_eventname").val(result.EventName);
+                    var num = Number(result.EventDate.split('(')[1].split(')')[0])
+                    var date = new Date(num).toLocaleDateString();
+                    $("#txt_eventdate").val(date);
+                    $("#txt_eventtitle").val(result.EventTitle);
+                    $("#img_event").attr("src", result.EventImageURL);
+                }
+            });
+        });
+        $("#btn_update").click(function () {
+            var id = $("#select_event").val().trim();
+            var name = $("#txt_eventname").val().trim();
+            var date = $("#txt_eventdate").val().trim();
+            var title = $("#txt_eventtitle").val().trim();
+            var image = $("#img_upload")[0].files[0];
+            if (name == null || name == '' || date == null || date == '' || title == null || title == '') {
+                alert("All Text Fields must have values");
+                return;
+            }
+            var formdata = new FormData();
+            formdata.append("id", id);
+            formdata.append("name", name);
+            formdata.append("date", date);
+            formdata.append("title", title);
+            formdata.append("image", image);
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateEvent',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("events", "admin")';
+                }
+            });
+        });
+        $("#btn_add").click(function () {
+            var name = $("#txt_eventname_add").val().trim();
+            var date = $("#txt_eventdate_add").val().trim();
+            var title = $("#txt_eventtitle_add").val().trim();
+            var file = $("#img_upload_add")[0].files[0];
+            if (name == null || name == '' || date == null || date == '' || title == null || title == '' || file == null) {
+                alert("All fields are required!");
+                return;
+            }
+            var formdata = new FormData();
+            formdata.append("name", name);
+            formdata.append("date", date);
+            formdata.append("title", title);
+            formdata.append("file", file);
+            $.ajax({
+                type: 'POST',
+                url: 'AddEvent',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    window.location.href = '@Url.Action("events", "admin")';
+                }
+            });
+        });
+        $("#btn_delete").click(function () {
+            var id = $("#select_event").val();
+            var isDelete = confirm("Are you sure want to Delete?");
+            if (isDelete) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'DeleteEvent/' + id,
+                    success: function (result) {
+                        window.location.href = '@Url.Action("events", "admin")';
+                    }
+
+                });
+            }
+        });
+    });
+</script>
+<div>
+    <div>
+        <h2>Events</h2>
+        <h5>Select Event:</h5><select id="select_event">
+            <option value="0">--Select--</option>
+            @foreach (var item in result)
+            {
+                <option value="@item.EventId">@item.EventTitle</option>
+            }
+        </select>
+    </div>
+    <div><h6>Event Name:<span style="color:red">*</span></h6><input type="text" id="txt_eventname" /></div>
+    <div><h6>Event Date:<span style="color:red">*</span></h6><input type="text" placeholder="mm/dd/yyyy" id="txt_eventdate" /></div>
+    <div><h6>Event Title:<span style="color:red">*</span></h6><input type="text" id="txt_eventtitle" /></div><br />
+    <div>
+        <img src="" id="img_event" style="height:100px; width:200px" />
+        <input type="file" id="img_upload" />
+    </div><br />
+    <div>
+        <input type="button" id="btn_update" value="Update" />
+        <input type="button" id="btn_delete" value="Delete" />
+    </div>
+</div>
+<div>
+    <h3>Add Events</h3>
+    <div><h6>Event Name:<span style="color:red">*</span></h6><input type="text" id="txt_eventname_add" /></div>
+    <div><h6>Event Date:<span style="color:red">*</span></h6><input type="text" placeholder="mm/dd/yyyy" id="txt_eventdate_add" /></div>
+    <div><h6>Event Title:<span style="color:red">*</span></h6><input type="text" id="txt_eventtitle_add" /></div><br />
+    <span style="color:red">*</span><input type="file" id="img_upload_add" /><br />
+    <div>
+        <input type="button" id="btn_add" value="Add" />
+    </div>
+
+</div>
+

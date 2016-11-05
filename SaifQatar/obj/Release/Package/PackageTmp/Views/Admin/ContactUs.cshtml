@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var contactTable = dbContext.Contacts.Select(x => x).ToList();
+    var addressTable = dbContext.Addresses.Select(x => x).ToList();
+    ViewBag.Title = "Admin Panel - Contact Us";
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btn_update").click(function () {
+            var address = $("#txt_address").val().trim();
+            var tel = $("#txt_tel").val().trim();
+            var fax = $("#txt_fax").val().trim();
+            var mobile1 = $("#txt_mob1").val().trim();
+            var mobile2 = $("#txt_mob2").val().trim();
+            var email = $("#txt_email").val().trim();
+            if (address == null || address == '' || tel == null || tel == '' || fax == null || fax == '' || mobile1 == null || mobile1 == '' || mobile2 == null || mobile2 == '' || email == null || email == '') {
+                alert("All Fields are Required!!!");
+                return;
+            }
+            var Data = { "address": address, "tel": tel, "fax": fax, "mobile1": mobile1, "mobile2": mobile2, "email": email, }
+            $.ajax({
+                type: 'POST',
+                url: 'UpdateContactDetail',
+                data: JSON.stringify(Data),
+                success: function (result) {
+                    window.location.href = "@Url.Action("contactus", "admin")";
+                }
+            });
+        });
+    });
+</script>
+<div>
+    <h2>Contact Us</h2>
+    <div><h5>Address:</h5><textarea id="txt_address" rows="5" ; cols="30">@addressTable[0].Address1</textarea></div>
+    <div><h5>Phone:</h5></div>
+    <div><h6>Tel:</h6><input type="text" id="txt_tel" value="@contactTable[0].Number" /></div>
+    <div><h6>Fax:</h6><input type="text" id="txt_fax" value="@contactTable[1].Number" /></div>
+    <div><h6>Mobile1:</h6><input type="text" id="txt_mob1" value="@contactTable[2].Number" /></div>
+    <div><h6>Mobile2:</h6><input type="text" id="txt_mob2" value="@contactTable[3].Number" /></div>
+    <div><h5>Email:</h5><input type="text" id="txt_email" value="@contactTable[4].Number" /></div><br />
+    <input type="button" id="btn_update" value="Update" />
+</div>

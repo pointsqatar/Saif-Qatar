@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaifQatar", "SaifQatar\SaifQatar.csproj", "{DE37F565-2FA0-4C95-A96F-FF8A35D2A61F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{EBCBA10B-87B3-4358-B99F-59CA0870A7A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaifRepository", "SaifRepository\SaifRepository.csproj", "{BE37E947-4BF0-4731-9E5F-6AC262C54614}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE37F565-2FA0-4C95-A96F-FF8A35D2A61F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE37F565-2FA0-4C95-A96F-FF8A35D2A61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE37F565-2FA0-4C95-A96F-FF8A35D2A61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE37F565-2FA0-4C95-A96F-FF8A35D2A61F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCBA10B-87B3-4358-B99F-59CA0870A7A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCBA10B-87B3-4358-B99F-59CA0870A7A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCBA10B-87B3-4358-B99F-59CA0870A7A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCBA10B-87B3-4358-B99F-59CA0870A7A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE37E947-4BF0-4731-9E5F-6AC262C54614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE37E947-4BF0-4731-9E5F-6AC262C54614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE37E947-4BF0-4731-9E5F-6AC262C54614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE37E947-4BF0-4731-9E5F-6AC262C54614}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

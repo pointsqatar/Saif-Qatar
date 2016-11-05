@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dbContext = new DataAccessLayer.SaifDatabaseEntities();
+    var result = dbContext.Galleries.Select(x => x).ToList();
+    ViewBag.Title = "Admin Panel - Gallery";
+}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".btn_delete").click(function () {
+            var current_button = this;
+            var isDelete = confirm("Are you sure wnat to Delete?");
+            if (isDelete) {
+                var id = $(current_button).attr('data-imageid');
+                $.ajax({
+                    type: 'GET',
+                    url: 'DeleteGallaryImage/' + id,
+                    success: function (result) {
+                        window.location.href = '@Url.Action("gallery","admin")';
+                    }
+                });
+            }
+        });
+        $("#btn_submit").click(function () {
+            var image = $("#img_upload")[0].files[0];
+            if (image == null) {
+                alert("No Image Selected!!!");
+                return;
+            }
+            var formdata = new FormData();
+            formdata.append("image", image);
+            $.ajax({
+                type: 'POST',
+                url: 'AddGallaryImage',
+                processData: false,
+                contentType: false,
+                data: formdata,
+                success: function (result) {
+                    window.location.href = '@Url.Action("gallery","admin")';
+                }
+            });
+        });
+    });
+</script>
+
+<div>
+    <div>
+        <h2>Gallery</h2>
+        <h5>Delete Image:</h5>
+        @foreach (var item in result)
+        {
+            <img src="@item.ImageUrl" style="height:100px; width:100px" id="img_@item.ImageId" />
+            <input type="button" class="btn_delete" value="Delete" data-imageid="@item.ImageId" />
+        }
+    </div>
+    <div>
+        <h5>Add Image:</h5>
+        <input type="file" id="img_upload" />
+        <input type="button" id="btn_submit" value="Add" />
+    </div>
+</div>

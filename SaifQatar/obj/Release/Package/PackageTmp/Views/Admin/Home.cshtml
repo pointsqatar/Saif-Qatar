@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var SliderId = ViewBag.sliders;
+    ViewBag.Title = "Admin Panel - Home";
+}
+
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btn_Submit").attr("disabled", "disabled");
+        $("#slider_id").change(function () {
+            var id = $("#slider_id").val();
+            if (id != "0") {
+                $("#btn_Submit").removeAttr("disabled");
+                $.ajax({
+                    type: 'GET',
+                    url: 'ShowContent/' + id,
+                    success: function (result) {
+                        var res = result;
+                        $("#top_Content").val(res.TopContent);
+                        $("#sub_Content").val(res.SubContent);
+                        $("#image").attr("src", res.ImageSource);
+                    }
+                });
+            }
+            else {
+                $("#btn_Submit").attr("disabled", "disabled");
+            }
+        });
+
+        $("#btn_Submit").click(function () {
+            var formdata = new FormData();
+            var topContent = $("#top_Content").val().trim();
+            if (topContent == null || topContent == '') {
+                alert("TopContent is mandatory");
+                $("#top_Content").focus();
+                return;
+            }
+            var subContent = $("#sub_Content").val().trim();
+            if (subContent == null || subContent == '') {
+                alert("SubContent is mandatory");
+                $("#sub_Content").focus();
+                return;
+            }
+            var file = $("#imageUpload");
+
+            var sliderId = $("#slider_id").val();
+            formdata.append("ImageFile", file[0].files[0]);
+            formdata.append("Topcontent", topContent);
+            formdata.append("Subcontent", subContent);
+            formdata.append("Id", sliderId);
+            $.ajax({
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formdata,
+                url: 'ChangeContent',
+                success: function (result) {
+                    window.location.href = '@Url.Action("home","admin")';
+                }
+            });
+            //}
+        });
+    });
+</script>
+
+
+<div>
+    <h2>Home</h2>
+    <div>
+        <h4>Choose Slider:</h4>
+        <select name="slider" id="slider_id">
+            <option value="0">--Select--</option>
+            @foreach (var item in SliderId)
+            {
+                <option value="@item">Slider @item</option>
+            }
+
+        </select>
+    </div>
+    <div>
+        <h4>Top Content:</h4><input type="text" id="top_Content" />
+    </div>
+    <div>
+        <h4>Sub Content:</h4><textarea cols="50" rows="3" id="sub_Content"></textarea>
+    </div>
+    <div>
+        <h4>Image Source:</h4><img id="image" style="height:200px; width:200px" />
+        <input type="file" id="imageUpload" />
+    </div>
+    <br />
+    <div>
+        <input type="button" id="btn_Submit" value="Update" />
+    </div>
+</div>
+

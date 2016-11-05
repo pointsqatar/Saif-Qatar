@@ -1,0 +1,114 @@
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\csc.exe
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\csc.exe.config
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\csc.rsp
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\csi.exe
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\csi.rsp
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.AppContext.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.Collections.Immutable.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.IO.FileSystem.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\System.Reflection.Metadata.dll
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\vbc.exe
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\vbc.exe.config
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\vbc.rsp
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\VBCSCompiler.exe
+D:\Projects\SaifQatar\SaifQatar\bin\roslyn\VBCSCompiler.exe.config
+D:\Projects\SaifQatar\SaifQatar\bin\SaifQatar.dll.config
+D:\Projects\SaifQatar\SaifQatar\bin\SaifQatar.dll
+D:\Projects\SaifQatar\SaifQatar\bin\SaifQatar.pdb
+D:\Projects\SaifQatar\SaifQatar\bin\DataAccessLayer.dll
+D:\Projects\SaifQatar\SaifQatar\bin\EntityFramework.dll
+D:\Projects\SaifQatar\SaifQatar\bin\EntityFramework.SqlServer.dll
+D:\Projects\SaifQatar\SaifQatar\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Projects\SaifQatar\SaifQatar\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\SaifQatar\SaifQatar\bin\Newtonsoft.Json.dll
+D:\Projects\SaifQatar\SaifQatar\bin\SaifRepository.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Helpers.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Mvc.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Razor.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.Deployment.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.dll
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.Razor.dll
+D:\Projects\SaifQatar\SaifQatar\bin\DataAccessLayer.pdb
+D:\Projects\SaifQatar\SaifQatar\bin\SaifRepository.pdb
+D:\Projects\SaifQatar\SaifQatar\bin\EntityFramework.xml
+D:\Projects\SaifQatar\SaifQatar\bin\EntityFramework.SqlServer.xml
+D:\Projects\SaifQatar\SaifQatar\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projects\SaifQatar\SaifQatar\bin\Newtonsoft.Json.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Razor.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.Deployment.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Webpages.Razor.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Helpers.xml
+D:\Projects\SaifQatar\SaifQatar\bin\System.Web.Mvc.xml
+D:\Projects\SaifQatar\SaifQatar\obj\Debug\SaifQatar.csprojResolveAssemblyReference.cache
+D:\Projects\SaifQatar\SaifQatar\obj\Debug\SaifQatar.dll
+D:\Projects\SaifQatar\SaifQatar\obj\Debug\SaifQatar.pdb
+D:\New Saif\SaifQatar\SaifQatar\obj\Debug\SaifQatar.csprojResolveAssemblyReference.cache
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\csc.exe
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\csc.exe.config
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\csc.rsp
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\csi.exe
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\csi.rsp
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.AppContext.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.Collections.Immutable.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.IO.FileSystem.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\System.Reflection.Metadata.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\vbc.exe
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\vbc.exe.config
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\vbc.rsp
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\VBCSCompiler.exe
+D:\New Saif\SaifQatar\SaifQatar\bin\roslyn\VBCSCompiler.exe.config
+D:\New Saif\SaifQatar\SaifQatar\bin\SaifQatar.dll.config
+D:\New Saif\SaifQatar\SaifQatar\bin\SaifQatar.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\SaifQatar.pdb
+D:\New Saif\SaifQatar\SaifQatar\bin\DataAccessLayer.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\EntityFramework.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\EntityFramework.SqlServer.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\Microsoft.Web.Infrastructure.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\Newtonsoft.Json.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\SaifRepository.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Helpers.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Mvc.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Razor.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.Deployment.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.Razor.dll
+D:\New Saif\SaifQatar\SaifQatar\bin\DataAccessLayer.pdb
+D:\New Saif\SaifQatar\SaifQatar\bin\SaifRepository.pdb
+D:\New Saif\SaifQatar\SaifQatar\bin\EntityFramework.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\EntityFramework.SqlServer.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\Newtonsoft.Json.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Razor.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.Deployment.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Webpages.Razor.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Helpers.xml
+D:\New Saif\SaifQatar\SaifQatar\bin\System.Web.Mvc.xml
+D:\New Saif\SaifQatar\SaifQatar\obj\Debug\SaifQatar.dll
+D:\New Saif\SaifQatar\SaifQatar\obj\Debug\SaifQatar.pdb

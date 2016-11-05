@@ -1,0 +1,12 @@
+D:\Projects\SaifQatar\SaifRepository\bin\Release\SaifRepository.dll.config
+D:\Projects\SaifQatar\SaifRepository\bin\Release\SaifRepository.dll
+D:\Projects\SaifQatar\SaifRepository\bin\Release\SaifRepository.pdb
+D:\Projects\SaifQatar\SaifRepository\bin\Release\DataAccessLayer.dll
+D:\Projects\SaifQatar\SaifRepository\bin\Release\EntityFramework.dll
+D:\Projects\SaifQatar\SaifRepository\bin\Release\EntityFramework.SqlServer.dll
+D:\Projects\SaifQatar\SaifRepository\bin\Release\DataAccessLayer.pdb
+D:\Projects\SaifQatar\SaifRepository\bin\Release\EntityFramework.xml
+D:\Projects\SaifQatar\SaifRepository\bin\Release\EntityFramework.SqlServer.xml
+D:\Projects\SaifQatar\SaifRepository\obj\Release\SaifRepository.csprojResolveAssemblyReference.cache
+D:\Projects\SaifQatar\SaifRepository\obj\Release\SaifRepository.dll
+D:\Projects\SaifQatar\SaifRepository\obj\Release\SaifRepository.pdb

@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "SAIF - Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var addressRepository = new SaifRepository.AddressRepository();
+}
+
+<!-- main body start -->
+<div id="fixit_main_content">
+    <!-- page title start -->
+    <div class="fixit_page_title">
+        <div class="fixit_page_title_inner">
+            <h3>Contact</h3>
+            <ul class="breadcrumb">
+                <li><a href="@Url.Action("index","home")">Home</a></li>
+                <li><a href="@Url.Action("contact","home")">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- page title end -->
+    <!-- project detail start -->
+    <div class="fixit_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <div class="fixit_section_heading">
+                        <h3 class="title">Send us a message</h3>
+                    </div>
+                    <div class="post_add_comment_wrapper" id="sendmessageform">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="input_wrapper light">
+                                    <input id="cont_name" type="text" placeholder="Enter your name*">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="input_wrapper light">
+                                    <input id="cont_email" type="text" placeholder="Enter your e-mail*">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="input_wrapper light">
+                                    <input id="cont_subject" type="text" placeholder="Enter your subject">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="input_wrapper light">
+                                    <input id="cont_company" type="text" placeholder="Enter your company">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="input_wrapper light">
+                                    <textarea id="cont_msg" placeholder="Enter your message"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12">
+                                <a id="contact_form_submit" name="contact_form_submit_name" class="fixit_btn fixit_btn_default">Send Message</a>
+                                <p class="input_error" id="contact_err" style="position:absolute; font-size:12px; font-weight:500; letter-spacing:0.5px;"> </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-sm-12">
+                    <div class="fixit_contact_box">
+                        <div>
+                            <div class="icon">
+                                <img src="~/images/icon/contact1.png" alt="" style="margin-top: 17px;" />
+                            </div>
+                            <div class="detail">
+                                <h3>Address:</h3>
+                                @foreach (var item in addressRepository.GetAddress())
+                                {
+                                    <p>@item.Address1</p>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="active">
+                            <div class="icon">
+                                <img src="~/images/icon/contact2.png" alt="" style="margin-top: 17px;" />
+                            </div>
+                            <div class="detail">
+                                <h3>Phones:</h3>
+                                @foreach (var item in addressRepository.GetTelephoneNumber())
+                                {
+                                    if (item.PhoneType != "Email")
+                                    {
+                                        <p>@item.PhoneType: @item.Number</p>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="icon">
+                                <img src="~/images/icon/contact3.png" alt="" style="margin-top: 17px;" />
+                            </div>
+                            <div class="detail">
+                                <h3>E-mail:</h3>
+                                <p>
+                                    <a style="color:aqua" class="mailto" href="mailto:@addressRepository.GetTelephoneNumber()[4].Number">@addressRepository.GetTelephoneNumber()[4].Number</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fixit_contact_Map" class="contact_Map" style="margin-top:30px"></div>
+        </div>
+    </div>
+    <!-- project detail end -->
+</div>
+<!-- main body end -->
+
+@section mapsection
+{
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlfk9irvDgU0n-21GLfrWZ188OIlMNIMI&callback=initMap">
+    </script>
+
+    <script>
+        function initMap() {
+            var myCenter = new google.maps.LatLng(25.1861113, 51.4321388);
+
+            var mapProp = {
+                center: myCenter,
+                zoom: 15,
+                scrollwheel: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+            };
+            var map = new google.maps.Map(document.getElementById("fixit_contact_Map"), mapProp);
+            var icon = {
+                url: '../images/icon/map_marker.png'
+            };
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                map: map,
+                title: 'SAIF Qatar Duct Fabrication',
+                icon: icon
+            });
+            marker.setMap(map);
+            var infowindow = new google.maps.InfoWindow({
+                content: "SAIF Qatar Duct Fabrication"
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+}
