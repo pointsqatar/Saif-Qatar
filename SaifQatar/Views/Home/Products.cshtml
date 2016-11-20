@@ -2,8 +2,17 @@
 @{
     ViewBag.Title = "SAIF - Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var productsRepository = new ProductRepository();
-    var products = productsRepository.GetProducts();
+    List<DataAccessLayer.Product> products;
+    if (Request.RequestContext.HttpContext.Cache["Products"] == null)
+    {
+        var productsRepository = new ProductRepository();
+        products = productsRepository.GetProducts();
+        Request.RequestContext.HttpContext.Cache["Products"] = products;
+    }
+    else
+    {
+        products = (List<DataAccessLayer.Product>)Request.RequestContext.HttpContext.Cache["Products"];
+    }
 }
 
 <!-- main body start -->

@@ -8,6 +8,7 @@ using System.IO;
 using System.Drawing;
 using Newtonsoft.Json;
 using SaifQatar.Authorized;
+using System.Collections;
 
 namespace SaifQatar.Controllers
 {
@@ -117,6 +118,7 @@ namespace SaifQatar.Controllers
             }
 
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -161,8 +163,8 @@ namespace SaifQatar.Controllers
                     image.Save(imagePath);
                     query[7].Description = "/images/AboutusPage/" + Image.FileName;
                 }
-
                 dbContext.SaveChanges();
+                ClearCache();
             }
             catch (Exception ex)
             {
@@ -180,6 +182,7 @@ namespace SaifQatar.Controllers
             var result = dbContent.Testimonials.Where(x => x.Id == sliderid).Select(x => x).FirstOrDefault();
             result.Testimonial_Description = message.content;
             dbContent.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -202,6 +205,7 @@ namespace SaifQatar.Controllers
                 Testimonial_Description = text.content
             });
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -212,6 +216,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.Testimonials.Where(x => x.Id == testid).FirstOrDefault();
             dbContext.Testimonials.Remove(result);
             dbContext.SaveChanges();
+            ClearCache();
             return Content("deleted");
         }
 
@@ -235,6 +240,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.Products.Where(x => x.Id == productId).Select(x => x).FirstOrDefault();
             dbContext.Products.Remove(result);
             dbContext.SaveChanges();
+            ClearCache();
             return Content("deleted");
         }
 
@@ -259,6 +265,7 @@ namespace SaifQatar.Controllers
                 SortOrder = sort
             });
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -283,7 +290,7 @@ namespace SaifQatar.Controllers
                 result.ProductImageUrl = "/images/ProductsPage/" + picture.FileName;
             }
             dbContext.SaveChanges();
-
+            ClearCache();
             return Content("updated");
         }
 
@@ -332,7 +339,7 @@ namespace SaifQatar.Controllers
                 result.EventImageURL = "/images/Eventspage/" + pngName;
             }
             dbContext.SaveChanges();
-
+            ClearCache();
             return Content("Success");
         }
 
@@ -365,7 +372,7 @@ namespace SaifQatar.Controllers
             });
 
             dbContext.SaveChanges();
-
+            ClearCache();
             return Content("Success");
         }
 
@@ -376,7 +383,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.Events.Where(x => x.EventId == eventId).Select(x => x).SingleOrDefault();
             dbContext.Events.Remove(result);
             dbContext.SaveChanges();
-
+            ClearCache();
             return Content("Deleted");
         }
 
@@ -392,6 +399,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.Galleries.Where(x => x.ImageId == imageId).Select(x => x).SingleOrDefault();
             dbContext.Galleries.Remove(result);
             dbContext.SaveChanges();
+            ClearCache();
             return Content("deleted");
         }
 
@@ -417,6 +425,7 @@ namespace SaifQatar.Controllers
                 IsActive = true
             });
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -439,7 +448,7 @@ namespace SaifQatar.Controllers
             var address = dbContext.Addresses.Select(x => x).ToList();
             address[0].Address1 = details.address;
             dbContext.SaveChanges();
-
+            ClearCache();
             return Content("success");
         }
 
@@ -470,7 +479,7 @@ namespace SaifQatar.Controllers
                 });
 
                 dbContext.SaveChanges();
-
+                ClearCache();
             }
             catch (Exception ex)
             {
@@ -486,6 +495,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.Certificates.Where(x => x.Id == certiId).Select(x => x).SingleOrDefault();
             dbContext.Certificates.Remove(result);
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -511,7 +521,7 @@ namespace SaifQatar.Controllers
                 });
 
                 dbContext.SaveChanges();
-
+                ClearCache();
             }
             catch (Exception ex)
             {
@@ -527,6 +537,7 @@ namespace SaifQatar.Controllers
             var result = dbContext.ProductCatalogues.Where(x => x.Id == productid).Select(x => x).SingleOrDefault();
             dbContext.ProductCatalogues.Remove(result);
             dbContext.SaveChanges();
+            ClearCache();
             return Content("success");
         }
 
@@ -553,12 +564,21 @@ namespace SaifQatar.Controllers
                 var result = dbContext.CompanyProfiles.Where(x => x.Id == 1).SingleOrDefault();
                 result.Profile_Path = path;
                 dbContext.SaveChanges();
-
+                ClearCache();
                 return Json("success");
             }
             catch (Exception ex)
             {
                 return Json(ex.Message);
+            }
+        }
+
+        private void ClearCache()
+        {
+            IDictionaryEnumerator cache = HttpContext.Cache.GetEnumerator();
+            while(cache.MoveNext())
+            {
+                HttpContext.Cache.Remove(cache.Key.ToString());
             }
         }
     }

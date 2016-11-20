@@ -17,3 +17,13 @@ D:\New Saif\SaifQatar\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
 D:\New Saif\SaifQatar\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\New Saif\SaifQatar\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
 D:\Projects\SaifQatar\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\EntityFramework.dll
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\EntityFramework.xml
+D:\Projects\Saif-Qatar\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Saif-Qatar\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+D:\Projects\Saif-Qatar\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\Projects\Saif-Qatar\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache

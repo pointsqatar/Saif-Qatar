@@ -22,3 +22,15 @@ D:\New Saif\SaifQatar\SaifRepository\bin\Debug\EntityFramework.SqlServer.xml
 D:\New Saif\SaifQatar\SaifRepository\obj\Debug\SaifRepository.csprojResolveAssemblyReference.cache
 D:\New Saif\SaifQatar\SaifRepository\obj\Debug\SaifRepository.dll
 D:\New Saif\SaifQatar\SaifRepository\obj\Debug\SaifRepository.pdb
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\SaifRepository.dll.config
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\SaifRepository.dll
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\SaifRepository.pdb
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\DataAccessLayer.dll
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\EntityFramework.dll
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\DataAccessLayer.pdb
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\EntityFramework.xml
+D:\Projects\Saif-Qatar\SaifRepository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Saif-Qatar\SaifRepository\obj\Debug\SaifRepository.csprojResolveAssemblyReference.cache
+D:\Projects\Saif-Qatar\SaifRepository\obj\Debug\SaifRepository.dll
+D:\Projects\Saif-Qatar\SaifRepository\obj\Debug\SaifRepository.pdb

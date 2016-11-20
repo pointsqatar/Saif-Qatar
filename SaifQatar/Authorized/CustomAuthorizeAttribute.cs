@@ -23,6 +23,5 @@ namespace SaifQatar.Authorized
                 filterContext.Result = new RedirectResult("/admin/login");
             }
         }
-
     }
 }

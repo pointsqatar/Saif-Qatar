@@ -1,10 +1,22 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SAIF - About Us";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var DbContext = new DataAccessLayer.SaifDatabaseEntities();
-    var result = DbContext.AboutUs.Select(x => x).ToList();
-    var test = DbContext.Testimonials.Select(x => x).ToList();
+    List<DataAccessLayer.AboutU> result;
+    List<DataAccessLayer.Testimonial> test;
+
+    if (Request.RequestContext.HttpContext.Cache["AboutUs"] == null && Request.RequestContext.HttpContext.Cache["Testimonial"] == null)
+    {
+        var DbContext = new DataAccessLayer.SaifDatabaseEntities();
+        result = DbContext.AboutUs.Select(x => x).ToList();
+        test = DbContext.Testimonials.Select(x => x).ToList();
+        Request.RequestContext.HttpContext.Cache["AboutUs"] = result;
+        Request.RequestContext.HttpContext.Cache["Testimonial"] = test;
+    }
+    else
+    {
+        result = (List<DataAccessLayer.AboutU>)Request.RequestContext.HttpContext.Cache["AboutUs"];
+        test = (List<DataAccessLayer.Testimonial>)Request.RequestContext.HttpContext.Cache["Testimonial"];
+    }
 }
 
 <!-- main body start -->

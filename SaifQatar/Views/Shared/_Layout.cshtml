@@ -1,10 +1,33 @@
 ﻿@using SaifRepository;
 @{
-    var menuRepository = new MenuRepository();
-    var menus = menuRepository.GetMenus();
-    var addressRepository = new AddressRepository();
-    var addresses = addressRepository.GetAddress();
-    var telephoneNumber = addressRepository.GetTelephoneNumber();
+    List<DataAccessLayer.Menu> menus;
+    List<DataAccessLayer.Address> addresses;
+    List<DataAccessLayer.Contact> telephoneNumber;
+
+    if (Request.RequestContext.HttpContext.Cache["Menus"] == null)
+    {
+        var menuRepository = new MenuRepository();
+        menus = menuRepository.GetMenus();
+        Request.RequestContext.HttpContext.Cache["Menus"] = menus;
+    }
+    else
+    {
+        menus = (List<DataAccessLayer.Menu>)Request.RequestContext.HttpContext.Cache["Menus"];
+    }
+
+    if (Request.RequestContext.HttpContext.Cache["Address"] == null && Request.RequestContext.HttpContext.Cache["Phone"] == null)
+    {
+        var addressRepository = new AddressRepository();
+        addresses = addressRepository.GetAddress();
+        telephoneNumber = addressRepository.GetTelephoneNumber();
+        Request.RequestContext.HttpContext.Cache["Address"] = addresses;
+        Request.RequestContext.HttpContext.Cache["Phone"] = telephoneNumber;
+    }
+    else
+    {
+        addresses = (List<DataAccessLayer.Address>)Request.RequestContext.HttpContext.Cache["Address"];
+        telephoneNumber = (List<DataAccessLayer.Contact>)Request.RequestContext.HttpContext.Cache["Phone"];
+    }
 }
 <html lang="en">
 <!--<![endif]-->

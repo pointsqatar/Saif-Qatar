@@ -1,8 +1,21 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SAIF - Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var addressRepository = new SaifRepository.AddressRepository();
+    List<DataAccessLayer.Address> addresses;
+    List<DataAccessLayer.Contact> telephoneNumber;
+    if (Request.RequestContext.HttpContext.Cache["Address"] == null && Request.RequestContext.HttpContext.Cache["Phone"] == null)
+    {
+        var addressRepository = new SaifRepository.AddressRepository();
+        addresses = addressRepository.GetAddress();
+        telephoneNumber = addressRepository.GetTelephoneNumber();
+        Request.RequestContext.HttpContext.Cache["Address"] = addresses;
+        Request.RequestContext.HttpContext.Cache["Phone"] = telephoneNumber;
+    }
+    else
+    {
+        addresses = (List<DataAccessLayer.Address>)Request.RequestContext.HttpContext.Cache["Address"];
+        telephoneNumber = (List<DataAccessLayer.Contact>)Request.RequestContext.HttpContext.Cache["Phone"];
+    }
 }
 
 <!-- main body start -->
@@ -73,7 +86,7 @@
                             </div>
                             <div class="detail">
                                 <h3>Address:</h3>
-                                @foreach (var item in addressRepository.GetAddress())
+                                @foreach (var item in addresses)
                                 {
                                     <p>@item.Address1</p>
                                 }
@@ -86,7 +99,7 @@
                             </div>
                             <div class="detail">
                                 <h3>Phones:</h3>
-                                @foreach (var item in addressRepository.GetTelephoneNumber())
+                                @foreach (var item in telephoneNumber)
                                 {
                                     if (item.PhoneType != "Email")
                                     {
@@ -103,7 +116,7 @@
                             <div class="detail">
                                 <h3>E-mail:</h3>
                                 <p>
-                                    <a style="color:aqua" class="mailto" href="mailto:@addressRepository.GetTelephoneNumber()[4].Number">@addressRepository.GetTelephoneNumber()[4].Number</a>
+                                    <a style="color:aqua" class="mailto" href="mailto:@telephoneNumber[4].Number">@telephoneNumber[4].Number</a>
                                 </p>
                             </div>
                         </div>

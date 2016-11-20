@@ -22,6 +22,5 @@ namespace SaifRepository
             var query = dbContext.HomeCarousels.Select(x => x).ToList();
             return query;
         }
-
     }
 }

@@ -3,11 +3,28 @@
 @{
     ViewBag.Title = "Downloads";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    DownloadRepository downloadRepository = new DownloadRepository();
-    var certificate = downloadRepository.GetCertificate();
-    var product = new CatalogueRepository();
-    var catalogue = product.GetProductCatalogues();
-    var companyProfile = downloadRepository.GetCompanyProfile();
+    List<Certificate> certificate;
+    List<ProductCatalogue> catalogue;
+    CompanyProfile companyProfile;
+    if (Request.RequestContext.HttpContext.Cache["Certificates"] == null && Request.RequestContext.HttpContext.Cache["Catalogues"] == null && Request.RequestContext.HttpContext.Cache["CompanyProfile"] == null)
+    {
+        DownloadRepository downloadRepository = new DownloadRepository();
+        var product = new CatalogueRepository();
+
+        certificate = downloadRepository.GetCertificate();
+        catalogue = product.GetProductCatalogues();
+        companyProfile = downloadRepository.GetCompanyProfile();
+
+        Request.RequestContext.HttpContext.Cache["Certificates"] = certificate;
+        Request.RequestContext.HttpContext.Cache["Catalogues"] = catalogue;
+        Request.RequestContext.HttpContext.Cache["CompanyProfile"] = companyProfile;
+    }
+    else
+    {
+        certificate = (List<Certificate>)Request.RequestContext.HttpContext.Cache["Certificates"];
+        catalogue = (List<ProductCatalogue>)Request.RequestContext.HttpContext.Cache["Catalogues"];
+        companyProfile = (CompanyProfile)Request.RequestContext.HttpContext.Cache["CompanyProfile"];
+    }
 }
 <div id="fixit_main_content">
 

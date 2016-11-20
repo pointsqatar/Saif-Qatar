@@ -9,14 +9,23 @@ using DataAccessLayer;
 namespace SaifQatar.Controllers
 {
     [HandleError(View = "~/Views/Error/Errorpage.cshtml")]
+    [OutputCache(Duration = 10, VaryByParam = "none")]
     public class HomeController : Controller
     {
         // GET: Home
         public ActionResult Index()
         {
-            var menuRepository = new MenuRepository();
-            var result = menuRepository.GetCarousel();
-
+            List<HomeCarousel> result;
+            if (HttpContext.Cache["HomeCarousel"] == null)
+            {
+                var menuRepository = new MenuRepository();
+                result = menuRepository.GetCarousel();
+                HttpContext.Cache["HomeCarousel"] = result;
+            }
+            else
+            {
+                result = (List<HomeCarousel>)HttpContext.Cache["HomeCarousel"];
+            }
             return View(result);
         }
 

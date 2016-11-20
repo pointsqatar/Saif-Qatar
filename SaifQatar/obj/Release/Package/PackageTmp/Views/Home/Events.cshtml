@@ -2,8 +2,17 @@
 @{
     ViewBag.Title = "SAIF - Events";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var eventsRepositiry = new EventsRepository();
-    var events = eventsRepositiry.GetEvents();
+    List<DataAccessLayer.Event> events;
+    if (Request.RequestContext.HttpContext.Cache["Events"] == null)
+    {
+        var eventsRepositiry = new EventsRepository();
+        events = eventsRepositiry.GetEvents();
+        Request.RequestContext.HttpContext.Cache["Events"] = events;
+    }
+    else
+    {
+        events = (List<DataAccessLayer.Event>)Request.RequestContext.HttpContext.Cache["Events"];
+    }
 }
 
 <!-- main body start -->
